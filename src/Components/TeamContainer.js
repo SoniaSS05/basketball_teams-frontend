@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {BASE_URL} from '../constraints/index'
+//import {BASE_URL} from '../constraints/index'
 import Team from './Team.js'
+import Team1 from './Team1.js'
 
 export default function TeamContainer() {
-
+    const BASE_URL="http://127.0.0.1:9393/"
     const [uteams, setuTeams] = useState(null)
 
     useEffect(()=>{
@@ -13,7 +14,7 @@ export default function TeamContainer() {
     },[])
 
     function allteams(){
-       return uteams.map(uteam => <Team uteams={uteam} delTeam = {delTeam} />)
+       return uteams.map(uteam => <Team uteams={uteam} delTeam = {delTeam}/>)
     }
     
 

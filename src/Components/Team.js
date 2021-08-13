@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Team({uteams, delTeam}) {
+export default function Team({uteams, delTeam, addTeam}) {
     //Modal code
     const styles = useStyles();
      //Modal Control Open Close 
@@ -41,16 +41,23 @@ export default function Team({uteams, delTeam}) {
        team_name:'',
        coach:''
     })
+    
+    function handleChange(event) {
+        setunewTeam({
+          ...unewTeam,
+          [event.target.name]: event.target.value,
+        });
+        console.log(unewTeam)
+    }
 
-    const handleChange=e=>{
-        console.log(e.target)
-        const {name,value}=e.target;
-     
-        //setunewTeam=(befState=>({ 
-         //   ...befState, 
-         //   [name]:value
-       // }));
-        console.log({name,value})
+    function handleCreateNewTeam(event){
+        event.preventDefault();
+        const newAddTeam={
+            team_name: unewTeam.team_name,
+            coach: unewTeam.coach
+        }
+        console.log(newAddTeam)
+        addTeam(newAddTeam);
     }
   //End Modal Control Create Team       
 
@@ -61,7 +68,7 @@ export default function Team({uteams, delTeam}) {
             <TextField className={styles.inputMaterial} label="Team Name" name="team_name" onChange={handleChange}/>
             <TextField className={styles.inputMaterial} label="Coach" name="coach" onChange={handleChange}/>
             <div align="right">
-                <Button color="Primary">Create</Button>
+                <Button color="Primary" onClick={handleCreateNewTeam}>Create</Button>
                 <Button onClick={()=>openclosemodalIns()}>Cancel</Button>
             </div>
         </div>

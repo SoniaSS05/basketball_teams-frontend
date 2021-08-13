@@ -22,7 +22,7 @@ export default function TeamContainer() {
     },[])
 
     function allteams(){
-       return uteams.map(uteam => <Team uteams={uteam} delTeam = {delTeam}/>)
+       return uteams.map(uteam => <Team uteams={uteam} delTeam = {delTeam} addTeam={addTeam}/>)
     }
     
 
@@ -41,6 +41,28 @@ export default function TeamContainer() {
         })
     }
 
+    
+    function addTeam(newTeam){
+        console.log(newTeam)
+        let urlComplete = BASE_URL + 'team'
+        const config = {
+        method: "POST",
+        headers: {
+            "Content-type":  "application/json",
+        },
+        body: JSON.stringify(newTeam)
+        }
+
+        fetch(urlComplete,config)
+        .then(response => response.json())
+        .then(newTeam =>{
+            const newTeams=[...uteams, newTeam];
+            setuTeams(newTeams);
+        })
+    
+
+        alert('Team was included');
+    }
 
     return (
         <div>

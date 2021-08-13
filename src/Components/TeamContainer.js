@@ -7,6 +7,14 @@ export default function TeamContainer() {
     const BASE_URL="http://127.0.0.1:9393/"
     const [uteams, setuTeams] = useState(null)
 
+    //Control de Modal para Create Team
+    //const [unewTeam, setunewTeam] = useState({
+   //     team_name:'',
+    //    coach:''
+   // })
+
+    
+
     useEffect(()=>{
         fetch(BASE_URL + 'teams')
             .then (res => res.json())

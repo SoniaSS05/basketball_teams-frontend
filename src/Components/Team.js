@@ -28,25 +28,49 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Team({uteams, delTeam}) {
+    //Modal code
     const styles = useStyles();
+     //Modal Control Open Close 
     const [umodalins, setuModalins] = useState(false);
-    
     const openclosemodalIns=()=>{
         setuModalins(!umodalins)
     }
 
-   
+ //Modal Control Create Team
+    const [unewTeam, setunewTeam] = useState({
+       team_name:'',
+       coach:''
+    })
+
+    const handleChange=e=>{
+        console.log(e.target)
+        const {name,value}=e.target;
+     
+        //setunewTeam=(befState=>({ 
+         //   ...befState, 
+         //   [name]:value
+       // }));
+        console.log({name,value})
+    }
+  //End Modal Control Create Team       
+
+
     const bodyNew = (
         <div className={styles.modal}>
             <h3>New Team</h3>
-            <TextField className={styles.inputMaterial} label="Team Name"/>
-            <TextField className={styles.inputMaterial} label="Coach"/>
+            <TextField className={styles.inputMaterial} label="Team Name" name="team_name" onChange={handleChange}/>
+            <TextField className={styles.inputMaterial} label="Coach" name="coach" onChange={handleChange}/>
             <div align="right">
                 <Button color="Primary">Create</Button>
                 <Button onClick={()=>openclosemodalIns()}>Cancel</Button>
             </div>
         </div>
     )
+
+    
+    //End Modal Code
+
+
     function handleClick(uteams){
         const data = uteams;
         console.log('Details for ', data);
@@ -70,8 +94,8 @@ export default function Team({uteams, delTeam}) {
                 </table>
             </div>
             <button onClick={()=>openclosemodalIns()}>New Team</button>
+
             <Modal  open={umodalins}  onclose={openclosemodalIns}>{bodyNew}</Modal>
-          
         </div>
     )   
 }

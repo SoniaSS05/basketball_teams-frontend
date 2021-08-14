@@ -102,7 +102,6 @@ export default function Team({uteams, addTeam}) {
           ...unewTeam,
           [event.target.name]: event.target.value,
         });
-        console.log(unewTeam)
     }
 
     function handleCreateNewTeam(event){
@@ -131,8 +130,11 @@ export default function Team({uteams, addTeam}) {
         </div>
     )
 
-    function dataTeam(uteam){
-        <p>holaaaaaaa</p>
+    function dataTeam(event){
+        event.preventDefault();
+        console.log("aca")
+        console.log(event.target.value)
+   
     }
     
     //End Modal Code
@@ -148,7 +150,7 @@ export default function Team({uteams, addTeam}) {
                     <TableBody>
                         <StyledTableCell width='300px'>
                             {uteams.map((uteam) =>
-                                <StyledTableRow onClick={dataTeam(uteam)} width='600px' height='50px'>{uteam.team_name}</StyledTableRow>
+                                <StyledTableRow onClick={dataTeam} width='600px' height='50px'>{uteam.team_name}</StyledTableRow>
                             )}
                         </StyledTableCell>
                     </TableBody>

@@ -71,7 +71,7 @@
     padding-left: .5rem;
     padding-right: .5rem;
     --text-opacity: 1;
-    color: rgb(248, 81, 3);
+    color: #f85103;
     color: rgba(255,255,255,var(--text-opacity));
     white-space: nowrap;
     transition-property: opacity;

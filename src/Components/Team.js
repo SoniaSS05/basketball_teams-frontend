@@ -1,9 +1,20 @@
 import React, {useEffect, useState} from 'react'
-import "./Team.css";
+
 import {Modal, TextField, Button} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import {
+       Table,
+       TableBody, 
+       TableCell, 
+       TableContainer, 
+       TableHead, 
+       TableRow, 
+       Paper
+} from '@material-ui/core';
+import "./Team.css";
 
 
+//Table style
 const useStyles = makeStyles((theme) => ({
     modal:{
         position: 'relative',
@@ -21,19 +32,63 @@ const useStyles = makeStyles((theme) => ({
     },
     inputMaterial:{
         width: '100%'
+    },
+    table:{
+        marginLeft: '200',
+     
+    },
+    tableContainer:{
+        borderRadius: 30    
+    },
+    tableHeaderCell:{
+        fontWeight: 'bold',
+        width: '500px'  
     }
-   
+
 }))
 
 
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    }
+}))(TableRow);
 
-export default function Team({uteams, delTeam, addTeam}) {
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: '#f85103',
+      textAlign: 'center',
+      color: 'black',
+      fontWeight: 'bold',
+      fontSize: 30,
+      width: 300
+    },
+    body: {
+      fontSize: 20,
+      width: 300,
+      height:50
+    },
+}))(TableCell);
+
+//End Table Style
+
+
+
+
+export default function Team({uteams, addTeam}) {
     //Modal code
     const styles = useStyles();
      //Modal Control Open Close 
     const [umodalins, setuModalins] = useState(false);
     const openclosemodalIns=()=>{
         setuModalins(!umodalins)
+    }
+
+    const [umodaldat, setuModaldat] = useState(false);
+    const openclosemodalDat=()=>{
+        setuModaldat(!umodaldat)
     }
 
  //Modal Control Create Team
@@ -58,8 +113,10 @@ export default function Team({uteams, delTeam, addTeam}) {
         }
         console.log(newAddTeam)
         addTeam(newAddTeam);
+        openclosemodalIns();
     }
   //End Modal Control Create Team       
+
 
 
     const bodyNew = (
@@ -74,35 +131,33 @@ export default function Team({uteams, delTeam, addTeam}) {
         </div>
     )
 
+    function dataTeam(uteam){
+        <p>holaaaaaaa</p>
+    }
     
     //End Modal Code
 
-
-    function handleClick(uteams){
-        const data = uteams;
-        console.log('Details for ', data);
-       return(<div>
-            <table>
-            <td>data.coach</td>
-        </table>
-        </div>)
-    }
-
     return (
-        <div>
-            <div>
-                <table>
-                    <td className="namecol">
-                        <tr onClick={()=>handleClick(uteams)}>{uteams.team_name}</tr>
-                    </td>
-                    <td className="buttoncol">
-                        <tr ><button onClick={()=>delTeam(uteams)}>Delete Team</button></tr>
-                    </td>
-                </table>
-            </div>
-            <button onClick={()=>openclosemodalIns()}>New Team</button>
+        <div className="namecol">
+                <TableContainer className={styles.tableContainer}>
+                    <TableHead className={styles.tableHeaderCell} >
+                        <TableRow>
+                            <StyledTableCell >TEAMS</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <StyledTableCell width='300px'>
+                            {uteams.map((uteam) =>
+                                <StyledTableRow onClick={dataTeam(uteam)} width='600px' height='50px'>{uteam.team_name}</StyledTableRow>
+                            )}
+                        </StyledTableCell>
+                    </TableBody>
+                </TableContainer>
+         
+            <button className="btn-3d" onClick={()=>openclosemodalIns()}>New Team</button>
 
             <Modal  open={umodalins}  onclose={openclosemodalIns}>{bodyNew}</Modal>
+            <Modal  open={umodaldat}  onclose={openclosemodalDat} ></Modal>
         </div>
     )   
 }

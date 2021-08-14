@@ -1,19 +1,12 @@
 import React, {useEffect, useState} from 'react'
 //import {BASE_URL} from '../constraints/index'
 import Team from './Team.js'
-import Team1 from './Team1.js'
+
 
 export default function TeamContainer() {
     const BASE_URL="http://127.0.0.1:9393/"
     const [uteams, setuTeams] = useState(null)
 
-    //Control de Modal para Create Team
-    //const [unewTeam, setunewTeam] = useState({
-   //     team_name:'',
-    //    coach:''
-   // })
-
-    
 
     useEffect(()=>{
         fetch(BASE_URL + 'teams')
@@ -22,7 +15,8 @@ export default function TeamContainer() {
     },[])
 
     function allteams(){
-       return uteams.map(uteam => <Team uteams={uteam} delTeam = {delTeam} addTeam={addTeam}/>)
+       //return uteams.map(uteam => <Team uteams={uteam} delTeam = {delTeam} addTeam={addTeam} />)
+       return (<Team uteams={uteams}  addTeam={addTeam} />)
     }
     
 
@@ -59,9 +53,6 @@ export default function TeamContainer() {
             const newTeams=[...uteams, newTeam];
             setuTeams(newTeams);
         })
-    
-
-        alert('Team was included');
     }
 
     return (

@@ -5,6 +5,8 @@ import Player from './Player.js'
 export default function PlayerContainer() {
     const BASE_URL="http://127.0.0.1:9393/"
     const [uplayers, setuPlayers] = useState(null)
+    const [uposition, setuPosition] =  useState(null)
+    const [ucomboteam, setuComboTeam] = useState(null)
 
     useEffect(()=>{
         fetch(BASE_URL + 'player')
@@ -12,23 +14,36 @@ export default function PlayerContainer() {
             .then (json => setuPlayers(json))
     },[])
 
+    useEffect(()=>{
+      fetch(BASE_URL + 'position')
+          .then (res => res.json())
+          .then (json => setuPosition(json))
+    },[])
+
+    useEffect(()=>{
+      fetch(BASE_URL + 'teams')
+          .then (res => res.json())
+          .then (json => setuComboTeam(json))
+    },[])
+
+
     function allplayers(){
-       return uplayers.map(uplayer => <Player uplayers={uplayer} delPlayer = {delPlayer} />)
+       return  (<Player uplayers={uplayers} delPlayer = {delPlayer} addPlayer={addPlayer} uposition={uposition} ucomboteam={ucomboteam}/>)
     }
     
 
     function delPlayer(player){
         console.log(player.id)
         const config = {
-            method: "DELETE"
+           method: "DELETE"
         };
         let urlComplete = BASE_URL + `player/${player.id}`
         console.log(urlComplete)
         fetch(urlComplete, config)
-        .then(response => response.json())
-        .then(()=>{
-            const updPlayers = uplayers.filter(filuplayers=>filuplayers.id!==player.id);
-            setuPlayers(updPlayers);
+         .then(response => response.json())
+         .then(()=>{
+             const updPlayers = uplayers.filter(filuplayers=>filuplayers.id!==player.id);
+             setuPlayers(updPlayers);
         })
     }
 
@@ -48,17 +63,10 @@ export default function PlayerContainer() {
             const newPlayers =[...uplayers, newPlayer];
             setuPlayers(newPlayers);
           })
-       
-    
           alert('Player was added');
         
       }
     
-      
-
-
-
-
 
     return (
         <div>

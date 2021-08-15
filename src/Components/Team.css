@@ -2,9 +2,6 @@
     margin:0px 0px 0px 500px;
 }
 
-
-
-
 .btn-3d {
     width: 200px ;
     height: 15px;
@@ -35,3 +32,12 @@
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#f0a100),to(#f70));
     background-image: linear-gradient(#ff5100 10%,#f70 100%);
   }
+
+  .labeldata{
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+
+  tr {padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
+    color: rgb(15, 15, 17);    border-top: 1px solid transparent; }

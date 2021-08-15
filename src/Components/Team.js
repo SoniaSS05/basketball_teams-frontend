@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react'
-
+import React, {useState} from 'react'
 import {Modal, TextField, Button} from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import {
@@ -66,9 +65,7 @@ const StyledTableCell = withStyles((theme) => ({
       width: 300
     },
     body: {
-      fontSize: 20,
-      width: 300,
-      height:50
+     
     },
 }))(TableCell);
 
@@ -76,20 +73,44 @@ const StyledTableCell = withStyles((theme) => ({
 
 
 
-
 export default function Team({uteams, addTeam}) {
-    //Modal code
+
     const styles = useStyles();
-     //Modal Control Open Close 
+     //Modal Control Insert Open Close 
     const [umodalins, setuModalins] = useState(false);
     const openclosemodalIns=()=>{
         setuModalins(!umodalins)
     }
 
     const [umodaldat, setuModaldat] = useState(false);
+    const [uDatasingle, setuDatasingle] = useState({
+        team_name: "",
+        coach: "",
+    });
+
     const openclosemodalDat=()=>{
         setuModaldat(!umodaldat)
     }
+    
+    //Display  Data One Team
+    const prepDisplayData=(uteam)=>{
+        setuDatasingle(uteam)
+        openclosemodalDat()
+    }
+
+    const displayData= (
+        <div className={styles.modal}>
+            <h2>{uDatasingle.team_name.toUpperCase()}</h2>
+            <td className="labeldata">
+                <tr>Coach: {uDatasingle.coach}</tr>
+            </td>
+            <div align="right">  
+                <Button color="Primary" onClick={()=>openclosemodalDat()}>CLOSE</Button>
+            </div>
+        </div>
+    )
+    //End Display Data One Team
+
 
  //Modal Control Create Team
     const [unewTeam, setunewTeam] = useState({
@@ -116,8 +137,6 @@ export default function Team({uteams, addTeam}) {
     }
   //End Modal Control Create Team       
 
-
-
     const bodyNew = (
         <div className={styles.modal}>
             <h3>New Team</h3>
@@ -129,14 +148,6 @@ export default function Team({uteams, addTeam}) {
             </div>
         </div>
     )
-
-    function dataTeam(event){
-        event.preventDefault();
-        console.log("aca")
-        console.log(event.target.value)
-   
-    }
-    
     //End Modal Code
 
     return (
@@ -148,23 +159,18 @@ export default function Team({uteams, addTeam}) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <StyledTableCell width='300px'>
+                        <td>
                             {uteams.map((uteam) =>
-                                <StyledTableRow onClick={dataTeam} width='600px' height='50px'>{uteam.team_name}</StyledTableRow>
+                                <tr onClick={()=>prepDisplayData(uteam)} width='600px' height='50px'>{uteam.team_name}</tr>
                             )}
-                        </StyledTableCell>
+                        </td>
                     </TableBody>
                 </TableContainer>
          
             <button className="btn-3d" onClick={()=>openclosemodalIns()}>New Team</button>
 
             <Modal  open={umodalins}  onclose={openclosemodalIns}>{bodyNew}</Modal>
-            <Modal  open={umodaldat}  onclose={openclosemodalDat} ></Modal>
+            <Modal  open={umodaldat}  onclose={openclosemodalDat}>{displayData}</Modal>
         </div>
     )   
 }
-
-
-    
-
- {/*{uteams.coach}*/}

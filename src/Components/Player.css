@@ -1,29 +1,55 @@
-table {     
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 15px;    margin: 45px;     width: 480px; text-align: left; 
-    border-collapse: collapse; }
-
-th { 
-     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
-    border-top: 4px solid #aabcfe;    border-bottom: 1px solid #fff; color: #039; }
-
-td {    padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
-    color: #669;    border-top: 1px solid transparent; }
-
-tr:hover td { background: #d0dafd; color: #339; }
-
-.namecol{
-    width:400px;
-    text-align: left;
-    margin:0px 0px 0px 100px;
+.playercol{
+    margin:0px 0px 0px 500px;
 }
 
-.biocol{
-    width:500px;
-    text-align: left;
+td {padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
+    color: rgb(15, 15, 17);    border-top: 1px solid transparent; height: 20px;}
+
+.comboboxpos{
+    background: white;
+    padding: 30px;
+}
+
+.comboboxfont{
+    color: lightslategray;
+    font-size: 18px;
+    background: white;
+    margin-right:20px;
+}
+
+.butn-3d {
+    width: 200px ;
+    height: 15px;
+    margin-left: 40px;
+    padding: .4rem 1rem;
+    border: 1px solid #995309;
+    border-radius: 4px;
+    background-color: #d9750b;
+    color: #fff;
   
+    font-size: 1.5rem;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset,
+      0 1px 3px rgba(0,0,0,.2);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#ff5100),to(#ff5100));
+    background-image: linear-gradient(#ff5100 10%,#e76a00 100%);
 }
-.buttoncol{
-    width: 300px;
-    text-align: center;
+  
+.butn-3d:hover, .btn-3d:focus {
+    background-color: #e0811b;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#f0a100),to(#f70));
+    background-image: linear-gradient(#ff5100 10%,#f70 100%);
+}
+  
+.butn-3d:active {
+    background-color: #cf6a00;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2) inset;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#f0a100),to(#f70));
+    background-image: linear-gradient(#ff5100 10%,#f70 100%);
+}
+
+.labeldata{
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
 }

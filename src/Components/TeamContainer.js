@@ -5,6 +5,7 @@ import Team from './Team.js'
 export default function TeamContainer() {
     const BASE_URL="http://127.0.0.1:9393/"
     const [uteams, setuTeams] = useState(null)
+    const [utplayers, setutPlayers] = useState(null)
 
 
     useEffect(()=>{
@@ -13,9 +14,15 @@ export default function TeamContainer() {
             .then (json => setuTeams(json))
     },[])
 
+    useEffect(()=>{
+        fetch(BASE_URL + 'player')
+            .then (res => res.json())
+            .then (json => setutPlayers(json))
+    },[])
+
 
     function allteams(){
-       return (<Team uteams={uteams}  addTeam={addTeam}/>)
+       return (<Team uteams={uteams}  addTeam={addTeam} utplayers={utplayers}/>)
     }
     
     

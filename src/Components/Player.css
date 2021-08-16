@@ -5,6 +5,18 @@
 td {padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
     color: rgb(15, 15, 17);    border-top: 1px solid transparent; height: 20px;}
 
+.textcolor{
+    color:blue;
+}
+
+.space{
+    margin-bottom: 20px;
+}
+
+.textbold{
+    font-weight:bolder;
+}
+
 .comboboxpos{
     background: white;
     padding: 30px;

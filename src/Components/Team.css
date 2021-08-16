@@ -40,4 +40,8 @@
   }
 
   tr {padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
-    color: rgb(15, 15, 17);    border-top: 1px solid transparent; }
+    color: rgb(15, 15, 17);    border-top: 1px solid transparent;}
+
+  .rowheight{
+    height: 20px;;
+  }

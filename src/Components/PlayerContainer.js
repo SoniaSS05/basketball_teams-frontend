@@ -28,7 +28,7 @@ export default function PlayerContainer() {
 
 
     function allplayers(){
-       return  (<Player uplayers={uplayers} delPlayer = {delPlayer} addPlayer={addPlayer} uposition={uposition} ucomboteam={ucomboteam}/>)
+       return  (<Player uplayers={uplayers} delPlayer = {delPlayer} addPlayer={addPlayer} uposition={uposition} ucomboteam={ucomboteam} updatePlayer={updatePlayer}/>)
     }
     
 
@@ -48,7 +48,6 @@ export default function PlayerContainer() {
     }
 
     function addPlayer(newPlayer){
-    
         const config = {
           method: "POST",
           headers: {
@@ -61,16 +60,36 @@ export default function PlayerContainer() {
           .then(response => response.json())
           .then(newPlayer =>{
             const newPlayers =[...uplayers, newPlayer];
-            setuPlayers(newPlayers);
+            setuPlayers(newPlayer);
           })
-          alert('Player was added');
-        
       }
     
+    function updatePlayer(upplayer){
+      console.log('UPPLAYER')
+      console.log(upplayer.id)
+      console.log(upplayer)
+      const config = {
+        method: "PATCH",
+        headers: {
+          "Accept":"application/json",
+          "Content-type":  "application/json"
+        },
+        body: JSON.stringify(upplayer)
+      }
+      let urlComplete = BASE_URL +  `player/${upplayer.id}`
+      console.log("URL")
+      console.log(urlComplete)
+      fetch(urlComplete,config)
+        .then(response => response.json())
+        .then(updPlayer =>{
+          const updPlay =[...uplayers, upplayer];    
+          setuPlayers(updPlay);
+        })
+      }  
 
     return (
         <div>
-            {uplayers && allplayers()}
+            {uplayers && uposition && ucomboteam && allplayers()}
         </div>
     )
 }

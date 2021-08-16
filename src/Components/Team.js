@@ -73,7 +73,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 
 
-export default function Team({uteams, addTeam}) {
+export default function Team({uteams, addTeam, utplayers}) {
 
     const styles = useStyles();
      //Modal Control Insert Open Close 
@@ -81,6 +81,12 @@ export default function Team({uteams, addTeam}) {
     const openclosemodalIns=()=>{
         setuModalins(!umodalins)
     }
+
+    //Players own team
+    const [uteamplayers, setuteamPlayers] = useState({
+        name:'',
+        team_id:''
+    })
 
     const [umodaldat, setuModaldat] = useState(false);
     const [uDatasingle, setuDatasingle] = useState({
@@ -95,20 +101,30 @@ export default function Team({uteams, addTeam}) {
     //Display  Data One Team
     const prepDisplayData=(uteam)=>{
         setuDatasingle(uteam)
+        const teamplayerfilter =  utplayers.filter((tm)=> tm.team_id == uteam.id)
+        setuteamPlayers(teamplayerfilter)
         openclosemodalDat()
     }
 
-    const displayData= (
-        <div className={styles.modal}>
-            <h2>{uDatasingle.team_name.toUpperCase()}</h2>
-            <td className="labeldata">
-                <tr>Coach: {uDatasingle.coach}</tr>
-            </td>
-            <div align="right">  
-                <Button color="Primary" onClick={()=>openclosemodalDat()}>CLOSE</Button>
+    let displayData=''
+    console.log(uteamplayers)
+    console.log(uteamplayers)
+    if(umodaldat){
+        displayData= (
+            <div className={styles.modal}>
+                <h2>{uDatasingle.team_name.toUpperCase()}</h2>
+                <td className="labeldata">
+                    <tr>Coach: {uDatasingle.coach}</tr>
+                </td>
+                <tr>
+                    <td>{uteamplayers.map((tp) =><tr className="rowheight">{tp.name}</tr>)}</td>
+                </tr>
+                <div align="right">  
+                    <Button color="Primary" onClick={()=>openclosemodalDat()}>CLOSE</Button>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
     //End Display Data One Team
 
 

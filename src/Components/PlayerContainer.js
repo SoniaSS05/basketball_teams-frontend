@@ -79,9 +79,16 @@ export default function PlayerContainer() {
       fetch(urlComplete,config)
         .then(response => response.json())
         .then(updPlayer =>{
-          //const updPlay =[...uplayers, upplayer];    
-          //setuPlayers(updPlay);
-          setuPlayers(uplayers)
+          console.log(updPlayer);
+          const updPlay = uplayers.map(player => {
+            if(player.id === updPlayer.id){
+              return updPlayer;
+            }
+            return player;
+          })   
+
+          setuPlayers(updPlay);
+          //setuPlayers(uplayers)
         })
       }  
 

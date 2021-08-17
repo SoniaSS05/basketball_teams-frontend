@@ -60,14 +60,13 @@ export default function PlayerContainer() {
           .then(response => response.json())
           .then(newPlayer =>{
             const newPlayers =[...uplayers, newPlayer];
-            setuPlayers(newPlayer);
+            setuPlayers(newPlayers);
           })
       }
     
     function updatePlayer(upplayer){
-      console.log('UPPLAYER')
-      console.log(upplayer.id)
-      console.log(upplayer)
+      console.log('UPPLAYERS')
+      console.log(uplayers);
       const config = {
         method: "PATCH",
         headers: {
@@ -77,13 +76,12 @@ export default function PlayerContainer() {
         body: JSON.stringify(upplayer)
       }
       let urlComplete = BASE_URL +  `player/${upplayer.id}`
-      console.log("URL")
-      console.log(urlComplete)
       fetch(urlComplete,config)
         .then(response => response.json())
         .then(updPlayer =>{
-          const updPlay =[...uplayers, upplayer];    
-          setuPlayers(updPlay);
+          //const updPlay =[...uplayers, upplayer];    
+          //setuPlayers(updPlay);
+          setuPlayers(uplayers)
         })
       }  
 

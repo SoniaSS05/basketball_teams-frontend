@@ -182,8 +182,6 @@ const prepDisplayDataPlayer=(uplayer, action)=>{
     setuDatasinglePlayer(uplayer)
     const teamfilter =  ucomboteam.filter((tm)=> tm.id == uplayer.team_id)
     const positionfilter = uposition.filter((ps)=> ps.id == uplayer.position_id)
-    console.log('TEAMFILTER')
-    console.log(teamfilter)
     setuPs(positionfilter)
     setuNamet(teamfilter)
     if (action === '0'){

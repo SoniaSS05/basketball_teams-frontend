@@ -19,12 +19,12 @@ td {padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
 
 .comboboxpos{
     background: white;
-    padding: 30px;
+    padding: 10px;
 }
 
 .comboboxfont{
     color: lightslategray;
-    font-size: 18px;
+    font-size: 12px;
     background: white;
     margin-right:20px;
 }

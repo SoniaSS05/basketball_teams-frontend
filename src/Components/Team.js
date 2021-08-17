@@ -107,18 +107,17 @@ export default function Team({uteams, addTeam, utplayers}) {
     }
 
     let displayData=''
-    console.log(uteamplayers)
-    console.log(uteamplayers)
+  
     if(umodaldat){
         displayData= (
             <div className={styles.modal}>
-                <h2>{uDatasingle.team_name.toUpperCase()}</h2>
+                <h2 className="h2margin">{uDatasingle.team_name.toUpperCase()}</h2>
+                <tr>
                 <td className="labeldata">
                     <tr>Coach: {uDatasingle.coach}</tr>
                 </td>
-                <tr>
-                    <td>{uteamplayers.map((tp) =><tr className="rowheight">{tp.name}</tr>)}</td>
                 </tr>
+                        <td className="colmargin" >{uteamplayers.map((tp) =><tr className="rowheight" >{tp.name}</tr>)}</td>
                 <div align="right">  
                     <Button color="Primary" onClick={()=>openclosemodalDat()}>CLOSE</Button>
                 </div>
